@@ -79,6 +79,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.inventivetalent:skullclient**</include>
+                                    <include>org.jsoup:jsoup**</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
