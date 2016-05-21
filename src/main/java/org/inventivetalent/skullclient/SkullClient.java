@@ -67,7 +67,7 @@ public class SkullClient {
 					}
 					callback.uploading();
 
-					String body = Jsoup.connect(String.format(apiFormat, url.toString())).userAgent("CustomSkullClient").ignoreContentType(true).ignoreHttpErrors(true).execute().body();
+					String body = Jsoup.connect(String.format(apiFormat, url.toString())).userAgent("CustomSkullClient").timeout(10000).ignoreContentType(true).ignoreHttpErrors(true).execute().body();
 					JsonObject jsonObject = new JsonParser().parse(body).getAsJsonObject();
 					if (jsonObject.has("error")) {
 						callback.error(jsonObject.get("error").getAsString());
