@@ -47,7 +47,7 @@ public class ClientTest {
 		final SkullData[] loadedData = new SkullData[1];
 		final String[] loadError = new String[1];
 
-		String url = "http://inventivetalent.org/texture/head/name/YELLOW.png";
+		String url = "https://i.imgur.com/g9zt2W0.png";
 		System.out.println("Testing URL " + url);
 		SkullClient.create(url, new SkullCallback() {
 			@Override
