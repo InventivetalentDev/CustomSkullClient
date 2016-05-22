@@ -29,6 +29,7 @@
 package org.inventivetalent.skullclient;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import org.jsoup.Jsoup;
 
@@ -68,14 +69,19 @@ public class SkullClient {
 					callback.uploading();
 
 					String body = Jsoup.connect(String.format(apiFormat, url.toString())).userAgent("CustomSkullClient").timeout(10000).ignoreContentType(true).ignoreHttpErrors(true).execute().body();
-					JsonObject jsonObject = new JsonParser().parse(body).getAsJsonObject();
-					if (jsonObject.has("error")) {
-						callback.error(jsonObject.get("error").getAsString());
-						return;
-					}
+					try {
+						JsonObject jsonObject = new JsonParser().parse(body).getAsJsonObject();
+						if (jsonObject.has("error")) {
+							callback.error(jsonObject.get("error").getAsString());
+							return;
+						}
 
-					nextRequest = System.currentTimeMillis() + (jsonObject.get("nextRequest").getAsInt() * 1000);
-					callback.done(SkullData.from(jsonObject));
+						nextRequest = System.currentTimeMillis() + (jsonObject.get("nextRequest").getAsInt() * 1000);
+						callback.done(SkullData.from(jsonObject));
+					} catch ( JsonParseException e) {
+						System.err.println(body);
+						throw new RuntimeException("Received malformed Json", e);
+					}
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 					throw new RuntimeException(e);
