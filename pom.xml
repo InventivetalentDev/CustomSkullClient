@@ -34,7 +34,7 @@
 
     <groupId>org.inventivetalent</groupId>
     <artifactId>skullclient</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>CustomSkullClient</name>
 
     <build>
@@ -80,6 +80,8 @@
                                 <includes>
                                     <include>org.inventivetalent:skullclient**</include>
                                     <include>org.jsoup:jsoup**</include>
+                                    <include>com.google.code.gson:gson**</include>
+                                    <include>com.google.guava:guava**</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
