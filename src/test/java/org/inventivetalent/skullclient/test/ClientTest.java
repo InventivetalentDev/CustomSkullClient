@@ -77,7 +77,7 @@ public class ClientTest {
 			}
 		});
 
-		countDownLatch.await(2, TimeUnit.SECONDS);
+		countDownLatch.await(60, TimeUnit.SECONDS);
 
 		assertNull(loadError[0]);
 
