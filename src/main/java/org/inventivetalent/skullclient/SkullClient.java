@@ -42,7 +42,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SkullClient {
 
-	static final String apiFormat = "https://api.inventivetalent.org/skulls/?url=%s";
+	static final String apiFormat = "https://skulls.inventivetalent.org/api/?url=%s";
 
 	static final Executor requestExecutor = Executors.newSingleThreadExecutor();
 
