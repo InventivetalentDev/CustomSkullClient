@@ -2,7 +2,7 @@
 
 [![Build Status](http://ci.inventivetalent.org/job/CustomSkullClient/badge/icon)](https://ci.inventivetalent.org/job/CustomSkullClient/)
 
-Client for [api.inventivetalent.org/skulls](https://api.inventivetalent.org/skulls/)
+Client for [skulls.inventivetalent.org](https://skulls.inventivetalent.org)
 
 Can be used to generate valid texture data from skin image files.  
 You can also use [this online tool](https://tools.inventivetalent.org/custom-skulls/) to directly generate skull data from images.
