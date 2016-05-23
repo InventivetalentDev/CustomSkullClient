@@ -1,6 +1,7 @@
 # CustomSkullClient
 
 [![Build Status](http://ci.inventivetalent.org/job/CustomSkullClient/badge/icon)](https://ci.inventivetalent.org/job/CustomSkullClient/)
+![](https://img.shields.io/github/release/inventivetalentDev/CustomSkullClient.png)
 
 Client for [skulls.inventivetalent.org](https://skulls.inventivetalent.org)
 
