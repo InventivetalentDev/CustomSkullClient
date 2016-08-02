@@ -31,6 +31,7 @@ package org.inventivetalent.skullclient;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.net.MalformedURLException;
@@ -55,6 +56,17 @@ public class SkullClient {
 	 * @param callback {@link SkullCallback} to inform about progress
 	 */
 	public static void create(final URL url, final SkullCallback callback) {
+		create(url, false, callback);
+	}
+
+	/**
+	 * Creates skull data from the image URL
+	 *
+	 * @param url           url to load image from
+	 * @param privateUpload whether to upload a private skull (won't be visible publicly)
+	 * @param callback      {@link SkullCallback} to inform about progress
+	 */
+	public static void create(final URL url, final boolean privateUpload, final SkullCallback callback) {
 		checkNotNull(url);
 		checkNotNull(callback);
 		requestExecutor.execute(new Runnable() {
@@ -68,7 +80,11 @@ public class SkullClient {
 					}
 					callback.uploading();
 
-					String body = Jsoup.connect(String.format(apiFormat, url.toString())).userAgent("CustomSkullClient").timeout(10000).ignoreContentType(true).ignoreHttpErrors(true).execute().body();
+					Connection connection = Jsoup.connect(String.format(apiFormat, url.toString())).userAgent("CustomSkullClient").timeout(10000).ignoreContentType(true).ignoreHttpErrors(true);
+					if (privateUpload) {
+						connection = connection.header("X-Skull-Private", "true");
+					}
+					String body = connection.execute().body();
 					try {
 						JsonObject jsonObject = new JsonParser().parse(body).getAsJsonObject();
 						if (jsonObject.has("error")) {
@@ -78,7 +94,7 @@ public class SkullClient {
 
 						nextRequest = System.currentTimeMillis() + (jsonObject.get("nextRequest").getAsInt() * 1000);
 						callback.done(SkullData.from(jsonObject));
-					} catch ( JsonParseException e) {
+					} catch (JsonParseException e) {
 						System.err.println(body);
 						throw new RuntimeException("Received malformed Json", e);
 					}
