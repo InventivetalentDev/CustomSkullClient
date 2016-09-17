@@ -3,6 +3,8 @@
 [![Build Status](http://ci.inventivetalent.org/job/CustomSkullClient/badge/icon)](https://ci.inventivetalent.org/job/CustomSkullClient/)
 ![](https://img.shields.io/github/release/inventivetalentDev/CustomSkullClient.png)
 
+**This client & API are outdated. Please use [mineskin.org](https://mineskin.org) / [MineskinClient](https://github.com/InventivetalentDev/MineskinClient)**
+
 Client for [skulls.inventivetalent.org](https://skulls.inventivetalent.org)
 
 Can be used to generate valid texture data from skin image files.  
